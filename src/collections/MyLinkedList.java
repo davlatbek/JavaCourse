@@ -1,5 +1,8 @@
 package collections;
 
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+
 /**
  * LinkedList implement
  * Created by davlet on 6/7/17.
@@ -95,6 +98,66 @@ public class MyLinkedList<T> {
     public void print() {
         for (int i = 0; i < this.size; i++) {
             System.out.println(this.get(i));
+        }
+    }
+
+    private ListIterator<T> MyIterator(){
+        return new AscendingIterator();
+    }
+
+    public class AscendingIterator implements ListIterator<T>{
+        private Node<T> next;
+        private int nextIndex;
+
+        @Override
+        public boolean hasNext() {
+            return nextIndex < size;
+        }
+
+        @Override
+        public T next() {
+            if (!hasNext()){
+                throw new NoSuchElementException();
+            }
+            next = next.next;
+            nextIndex++;
+            return next.value;
+        }
+
+        @Override
+        public boolean hasPrevious() {
+            return nextIndex > 0;
+        }
+
+        @Override
+        public T previous() {
+
+            return null;
+        }
+
+        @Override
+        public int nextIndex() {
+            return 0;
+        }
+
+        @Override
+        public int previousIndex() {
+            return 0;
+        }
+
+        @Override
+        public void remove() {
+
+        }
+
+        @Override
+        public void set(T t) {
+
+        }
+
+        @Override
+        public void add(T t) {
+
         }
     }
 
