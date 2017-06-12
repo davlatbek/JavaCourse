@@ -23,7 +23,7 @@ public class Checker implements Runnable {
                     }
                     System.out.println("Number: " + integerList.get(i) + " " + uniqueNumber);
                 }
-                Thread.sleep(1000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
