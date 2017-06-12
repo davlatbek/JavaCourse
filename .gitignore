@@ -1,2 +1,4 @@
 #ignored files
 JavaCourse.iml
+.idea/*
+out/*
