@@ -1,4 +1,4 @@
-package com.innopolis;
+package examples;
 
 import java.io.File;
 import java.io.FileNotFoundException;

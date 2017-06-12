@@ -1,4 +1,4 @@
-package com.innopolis;
+package examples;
 
 /**
  * Created by davlet on 6/6/17.
