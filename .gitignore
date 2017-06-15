@@ -2,3 +2,5 @@
 JavaCourse.iml
 .idea/*
 out/*
+src/.DS_Store
+src/collections/.DS_Store
