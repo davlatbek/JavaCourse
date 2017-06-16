@@ -1,46 +1,41 @@
 package concurrency.srez1;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  * Created by davlet on 6/12/17.
  */
 public class Checker implements Runnable {
-    private List<Integer> integerList;
-    private Integer uniqueNumber = 0;
+    private Map<Integer, Integer> integerMap;
+    private Integer numberToGenerateUntilStop;
+    private Semaphore semaphore;
 
-    public Checker(List<Integer> integers){
-        this.integerList = integers;
+    public Checker(Map<Integer, Integer> integerMap, Integer numberToGenerateUntilStop, Semaphore semaphore){
+        this.integerMap = integerMap;
+        this.numberToGenerateUntilStop = numberToGenerateUntilStop;
+        this.semaphore = semaphore;
     }
 
     @Override
     public void run() {
-        for (int i = 0; i < 100; i++){
+        while (semaphore.isRunning()){
             try {
-                synchronized (integerList){
-                    if (isUnique(integerList.get(i), integerList, i)){
-                        uniqueNumber++;
-                    }
-                    System.out.println("Number: " + integerList.get(i) + " " + uniqueNumber);
+                Integer uniqueNumbers = 0;
+                synchronized (integerMap) {
+                    uniqueNumbers = integerMap.size();
+                    System.out.println(integerMap);
                 }
-                Thread.sleep(5000);
+                if (uniqueNumbers > numberToGenerateUntilStop) {
+                    this.semaphore.setRunning(false);
+                    Thread.yield();
+                }
+                System.out.println("Amount of unique numbers: " + uniqueNumbers);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
-            catch (IndexOutOfBoundsException e){
+            } catch (IndexOutOfBoundsException e) {
                 System.out.println("Tried to get integers from list before it was added, run again");
             }
         }
-    }
-
-    private static boolean isUnique(Integer integer, List<Integer> integers, Integer currentIndex){
-        for (int i = 0; i < integers.size(); i++){
-            if (i == currentIndex)
-                continue;
-            if (integers.get(i).equals(integer)){
-                return false;
-            }
-        }
-        return true;
     }
 }
