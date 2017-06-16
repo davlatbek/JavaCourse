@@ -11,7 +11,7 @@ import java.util.List;
 public class WatchServiceExample {
     public static void main(String[] args) {
         WatchServiceExample watchServiceExample = new WatchServiceExample();
-        watchServiceExample.watchFile(new File("file2.txt"));
+        watchServiceExample.watchFile(new File("file.txt"));
     }
 
     public static void printFile(Path file){
