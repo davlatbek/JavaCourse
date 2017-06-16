@@ -19,8 +19,8 @@ import java.util.Set;
 public class FileReader {
     //file reader with new IO
     public static void main(String[] args) {
-        Path firstPath = Paths.get("/Users/davlatbek/IdeaProjects/JavaCourse/file.txt");
-        Path secondPath = Paths.get("/Users/davlatbek/IdeaProjects/JavaCourse/file2.txt");
+        Path firstPath = Paths.get("./src/java7/file.txt");
+        Path secondPath = Paths.get("./src/java7/file2.txt");
         Set<PosixFilePermission> filePermissions =
                 PosixFilePermissions.fromString("rw-rw-rw-");
         FileAttribute<Set<PosixFilePermission>> myFileAttribute =
