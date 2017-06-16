@@ -30,7 +30,7 @@ public class FileWatchService {
         java.nio.file.WatchService watchService;
         try {
             watchService = FileSystems.getDefault().newWatchService();
-            path = Paths.get("./");
+            path = Paths.get("./src/java8/practice/");
             path.register(watchService, StandardWatchEventKinds.ENTRY_MODIFY);
             WatchKey key;
             while ((key = watchService.take()) != null){
