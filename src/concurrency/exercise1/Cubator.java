@@ -3,20 +3,30 @@ package concurrency.exercise1;
 /**
  * Created by davlet on 6/10/17.
  */
-public class Cubator implements Runnable {
-    int[] exp;
+public class Cubator extends Thread {
+    int value;
+    Semaphore semaphore;
+    String threadName;
 
-    public Cubator(int[] exp) {
-        this.exp = exp;
+    public Cubator(String threadName, int exp, Semaphore semaphore) {
+        this.value = exp;
+        this.semaphore = semaphore;
+        this.threadName = threadName;
     }
 
     @Override
     public void run() {
-        System.out.println("Cubator thread");
-        calculate(this.exp);
+        try {
+            Thread.sleep(5000);
+//            System.out.println(threadName + " thread");
+            Integer result = calculate(this.value);
+            semaphore.save(result);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    public int calculate(int[] expression) {
-        return (int) Math.pow(expression[0], 3);
+    private Integer calculate(int value) {
+        return value*value*value;
     }
 }
