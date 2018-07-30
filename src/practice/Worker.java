@@ -1,4 +1,4 @@
-package java8.practice;
+package practice;
 
 import java.io.BufferedReader;
 import java.io.File;
