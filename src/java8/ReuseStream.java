@@ -10,7 +10,7 @@ public class ReuseStream {
         Supplier<Stream<String>> streamSupplier = () -> Stream.of(array);
 
         //get new stream
-        streamSupplier.get().forEach(x -> System.out.println(x));
+        streamSupplier.get().forEach(System.out::println);
 
         //get another new stream
         long count = streamSupplier.get().filter(x -> "b".equals(x)).count();
